@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open Courses</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h2>Available Courses</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Title</th>
+                <th>Professor</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% courses.forEach(function(course) { %>
+                <tr>
+                    <td><%= course.code %></td>
+                    <td><%= course.title %></td>
+                    <td><%= course.facultyName %></td>
+                    <td>
+                        <form action="/student/enroll" method="POST">
+                            <input type="hidden" name="sectionId" value="<%= course.sectionId %>">
+                            <button type="submit">Enroll</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <a href="/student/dashboard">Back to Dashboard</a>
+</body>
+</html>

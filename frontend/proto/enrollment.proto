@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package enrollment;
+
+message Enrollment {
+  int32 id = 1;
+  int32 studentId = 2;
+  int32 sectionId = 3;
+  int32 courseId = 4;
+  string courseCode = 5;
+  string courseTitle = 6;
+  string sectionCode = 7;
+  string status = 8;
+  string term = 9;
+  string ay = 10;
+  string createdAt = 11;
+  string studentName = 12;
+  double grade = 13; 
+}
+
+//enrolling 
+message EnrollStudentRequest {
+    int32 studentId = 1;
+    int32 sectionId = 2;
+}
+
+message EnrollStudentResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+//view enrollment
+message GetMyEnrollmentsRequest {
+    int32 studentId = 1;
+}
+
+message GetMyEnrollmentsResponse {
+    repeated Enrollment enrollments = 1;
+}
+
+//faculty to see who enrolled 
+message GetSectionEnrollmentsRequest {
+    int32 sectionId = 1;
+}
+
+message GetSectionEnrollmentsResponse {
+    repeated Enrollment enrollments = 1;
+}
+
+service EnrollmentService {
+  rpc EnrollStudent(EnrollStudentRequest) returns (EnrollStudentResponse);
+  rpc GetMyEnrollments(GetMyEnrollmentsRequest) returns (GetMyEnrollmentsResponse);
+  rpc GetSectionEnrollments(GetSectionEnrollmentsRequest) returns (GetSectionEnrollmentsResponse);
+}

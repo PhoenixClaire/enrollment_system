@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Enrollments</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h2>My Enrollments</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Section</th>
+                <th>Term</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (enrollments && enrollments.length > 0) { %>
+                <% enrollments.forEach(function(item) { %>
+                    <tr>
+                        <td><%= item.courseCode %></td>
+                        <td><%= item.sectionCode %></td>
+                        <td><%= item.term %></td>
+                        <td class="<%= item.status === 'enrolled' ? 'status-enrolled' : '' %>">
+                        <%= item.status %>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr><td colspan="4">No enrollments found.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+    <br>
+    <a href="/student/dashboard">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+        <h1>Welcome, Student</h1>
+        
+        <form action="/logout" method="POST" style="margin: 0; padding: 0; background: none; box-shadow: none; width: auto;">
+            <button type="submit" style="background-color: #c0392b; margin: 0;">Logout</button>
+        </form>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/student/courses">View Open Courses (Enroll)</a></li>
+            <li><a href="/student/enrollments/my">My Current Enrollments</a></li>
+            <li><a href="/student/grades/my">My Grades</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

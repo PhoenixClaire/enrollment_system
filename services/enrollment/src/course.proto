@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package course;
+
+message Empty {}
+
+message Course {
+    int32 id = 1;
+    string code = 2;
+    string title = 3;
+    int32 units = 4;
+    string status = 5;
+    int32 capacity = 6; 
+    string facultyName = 7;
+    string term = 8;
+    string ay = 9; 
+    int32 sectionId = 10;
+    string sectionCode = 11;
+}
+
+//get open courses
+message GetOpenCoursesRequest {}
+
+//open courses LoginResponse
+message GetOpenCoursesResponse {
+    repeated Course courses = 1;
+}
+
+//faculty request courses
+message GetFacultyCoursesRequest {
+    int32 facultyId = 1;
+}
+
+//response for faculty
+message GetFacultyCoursesResponse {
+    repeated Course courses = 1;
+}
+
+service CourseService {
+    rpc GetOpenCourses(GetOpenCoursesRequest) returns (GetOpenCoursesResponse);
+    rpc GetFacultyCourses(GetFacultyCoursesRequest) returns (GetFacultyCoursesResponse);
+}

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package grades;
+
+// What a single grade looks like when the student views it
+message Grade {
+  int32 studentId = 1;
+  int32 sectionId = 2;
+  int32 courseId = 3;
+  string courseCode = 4;
+  string term = 5;
+  string ay = 6;
+  double grade = 7;
+}
+
+// ============= STUDENT =============
+
+message GetMyGradesRequest {
+  int32 studentId = 1;
+}
+
+message GetMyGradesResponse {
+  repeated Grade grades = 1;
+}
+
+// ============= FACULTY UPLOAD =============
+
+message GradeInput {
+  int32 studentId = 1;
+  double grade = 2;
+}
+
+message UploadGradesRequest {
+  int32 sectionId = 1;
+  int32 facultyId = 2;
+  repeated GradeInput grades = 3;
+}
+
+message UploadGradesResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+service GradesService {
+  rpc GetMyGrades  (GetMyGradesRequest)  returns (GetMyGradesResponse);
+  rpc UploadGrades (UploadGradesRequest) returns (UploadGradesResponse);
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grade Student Section</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+        <h1>Grading Section: <%= sectionId %></h1>
+        
+        <form action="/logout" method="POST" style="margin: 0; padding: 0; background: none; box-shadow: none; width: auto;">
+            <button type="submit" style="background-color: #c0392b; margin: 0;">Logout</button>
+        </form>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/faculty/dashboard">« Back to Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <h3>Student List</h3>
+        
+            <form action="/faculty/grades/upload" method="POST" style="margin: 0; padding: 0; background: none; box-shadow: none; max-width: none;">
+                
+                <input type="hidden" name="sectionId" value="<%= sectionId %>">
+                <table border="1">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Current Grade</th>
+                        <th>Assign New Grade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% students.forEach(function(student, index) { %>
+                        <tr>
+                            <td><%= student.studentId %></td>
+                            <td><%= student.studentName %></td>
+                            <td><%= student.grade ? student.grade : 'N/A' %></td>
+                            <td>
+                                <input type="hidden" name="grades[<%= index %>][studentId]" value="<%= student.id %>">
+                                <input type="hidden" name="grades[<%= index %>][courseId]" value="<%= sectionId %>">
+                                
+                                <input type="number" name="grades[<%= index %>][grade]" step="0.01" placeholder="Enter grade (e.g. 95)" style="width: 150px;">
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+            
+            <br>
+            <button type="submit" style="width: 200px; font-size: 16px;">Save Grades</button>
+        </form>
+    </div>
+
+</body>
+</html>

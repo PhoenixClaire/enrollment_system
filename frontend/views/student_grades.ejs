@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Grades</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h2>My Grades</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>Term</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (grades && grades.length > 0) { %>
+                <% grades.forEach(function(item) { %>
+                    <tr>
+                        <td><%= item.courseCode %></td>
+                        <td><%= item.term %></td>
+                        <td><%= item.grade %></td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr><td colspan="3">No grades available yet.</td></tr>
+            <% } %>
+        </tbody>
+    </table>
+    <br>
+    <a href="/student/dashboard">Back to Dashboard</a>
+</body>
+</html>

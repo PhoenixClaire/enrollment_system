@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">
+        <h1>Faculty Dashboard</h1>
+        
+        <form action="/logout" method="POST" style="margin: 0; padding: 0; background: none; box-shadow: none; width: auto;">
+            <button type="submit" style="background-color: #c0392b; margin: 0;">Logout</button>
+        </form>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/faculty/dashboard">My Courses</a></li>
+        </ul>
+    </nav>
+
+    <div style="margin-top: 20px;">
+        <h2>My Scheduled Courses</h2>
+        
+        <% if (courses && courses.length > 0) { %>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Title</th>
+                        <th>Term</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% courses.forEach(function(course) { %>
+                        <tr>
+                            <td><%= course.code %></td>
+                            <td><%= course.title %></td>
+                            <td><%= course.term %></td>
+                            <td>
+                                <a href="/faculty/sections/<%= course.id %>">
+                                    <button style="margin: 0; padding: 5px 10px; font-size: 14px;">
+                                        Manage Grades
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>You are not assigned to teach any courses this term.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>

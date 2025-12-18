@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <form action="/login" method="POST">
+        <h2 style="text-align: center;">Login</h2>
+
+        <% if (locals.error) { %>
+            <p style="color:red; text-align: center;"><%= error %></p>
+        <% } %>
+
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+        
+        <br><br>
+
+        <label for="password">Password:</label>
+        <div class="password-wrapper">
+            <input type="password" name="password" id="password" required>
+            <span id="togglePassword" class="eye-icon">👁️</span>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function () {
+            // Toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            
+            // Toggle the icon (Eye vs Monkey/Slash)
+            this.textContent = type === 'password' ? '👁️' : '🙈';
+        });
+    </script>
+</body>
+</html>
